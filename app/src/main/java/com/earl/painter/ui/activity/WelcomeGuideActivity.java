@@ -3,7 +3,6 @@ package com.earl.painter.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +11,7 @@ import android.widget.LinearLayout;
 
 import com.earl.painter.R;
 import com.earl.painter.adapter.GuideViewPagerAdapter;
+import com.earl.painter.bean.BaseActivity;
 import com.earl.painter.utils.SharedPreferencesUtil;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * 引导页
  */
-public class WelcomeGuideActivity extends AppCompatActivity implements View.OnClickListener{
+public class WelcomeGuideActivity extends BaseActivity implements View.OnClickListener{
 
     private ViewPager vp;
     private GuideViewPagerAdapter adapter;

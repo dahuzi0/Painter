@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-
+def supportVersion = "25.0.0"
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.0'
@@ -35,4 +35,9 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile 'io.reactivex:rxjava:1.2.3'
     compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile project(':okgo')
+    compile 'com.android.support:design:25.0.1'
+    compile project(':okrx')
+    compile project(':okserver')
 }

@@ -7,19 +7,17 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 
-import com.earl.painter.MainActivity;
 import com.earl.painter.R;
+import com.earl.painter.bean.BaseActivity;
 import com.earl.painter.utils.SharedPreferencesUtil;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -27,7 +25,7 @@ import rx.functions.Action1;
 /**
  * 启动页
  */
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends BaseActivity {
 
     @BindView(R.id.iv_entry)
     ImageView mIVEntry;
@@ -61,7 +59,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // 如果不是第一次启动app，则正常显示启动屏
         setContentView(R.layout.activity_welcome);
-        ButterKnife.bind(this);
         startMainActivity();
     }
 
