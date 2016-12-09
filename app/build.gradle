@@ -40,4 +40,5 @@ dependencies {
     compile 'com.android.support:design:25.0.1'
     compile project(':okrx')
     compile project(':okserver')
+    compile project(':FlycoTabLayout_Lib')
 }
