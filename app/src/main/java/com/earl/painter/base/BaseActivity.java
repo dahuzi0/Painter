@@ -1,4 +1,4 @@
-package com.earl.painter.bean;
+package com.earl.painter.base;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;

@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 
 import com.earl.painter.R;
 import com.earl.painter.adapter.GuideViewPagerAdapter;
-import com.earl.painter.bean.BaseActivity;
+import com.earl.painter.base.BaseActivity;
 import com.earl.painter.utils.SharedPreferencesUtil;
 
 import java.util.ArrayList;

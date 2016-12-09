@@ -2,5 +2,6 @@
     <string name="app_name">Painter</string>
     <string name="entry">立即体验</string>
     <string name="simple_view_behavior">com.earl.painter.ui.view.SimpleViewBehavior</string>
-    <string name="translate_up_down_behavior">com.earl.painter.ui.view.TranslateUpDownBehavior</string>
+    <string name="translate_up_down_behavior">com.earl.painter.ui.view.TranslateUpDownBehavior
+    </string>
 </resources>
