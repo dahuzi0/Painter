@@ -15,6 +15,9 @@ import android.widget.TextView;
 import com.earl.painter.R;
 import com.earl.painter.base.BaseActivity;
 import com.earl.painter.base.BaseRecyclerAdapter;
+import com.earl.painter.entity.TabEntity;
+import com.flyco.tablayout.CommonTabLayout;
+import com.flyco.tablayout.listener.CustomTabEntity;
 
 import java.util.ArrayList;
 
@@ -34,18 +37,33 @@ public class MainActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.toolbar_title)
     TextView toolbarTitle;
+    @BindView(R.id.mTabLayout)
+    CommonTabLayout mTabLayout;
+
+    private String[] mTitles = {"首页", "新闻", "媒体", "更多"};
+    private int[] mIconUnselectIds = {
+            R.mipmap.tab_home_unselect, R.mipmap.tab_news_unselect,
+            R.mipmap.tab_media_unselect, R.mipmap.tab_more_unselect};
+    private int[] mIconSelectIds = {
+            R.mipmap.tab_home_select, R.mipmap.tab_news_select,
+            R.mipmap.tab_media_select, R.mipmap.tab_more_select};
+    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     private ArrayList<OkHttpModel> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initToolBar(toolbar,false,"");
+        initToolBar(toolbar, false, "");
         initData();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(new MainAdapter(this));
+        for (int i = 0; i < mTitles.length; i++) {
+            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+        }
+        mTabLayout.setTabData(mTabEntities);
     }
 
     @OnClick(R.id.fab)
@@ -203,14 +221,14 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onClick(View v) {
-//            if (position == 1) startActivity(new Intent(MainActivity.this, RxActivity.class));
-//            if (position == 3) startActivity(new Intent(MainActivity.this, OkHttpActivity.class));
-//            if (position == 4) startActivity(new Intent(MainActivity.this, JsonRequestActivity.class));
-//            if (position == 5) startActivity(new Intent(MainActivity.this, FileDownloadActivity.class));
-//            if (position == 6) startActivity(new Intent(MainActivity.this, FormUploadActivity.class));
-//            if (position == 7) startActivity(new Intent(MainActivity.this, CacheDemoActivity.class));
-//            if (position == 9) startActivity(new Intent(MainActivity.this, DownloadActivity.class));
-//            if (position == 10) startActivity(new Intent(MainActivity.this, UploadActivity.class));
+            //            if (position == 1) startActivity(new Intent(MainActivity.this, RxActivity.class));
+            //            if (position == 3) startActivity(new Intent(MainActivity.this, OkHttpActivity.class));
+            //            if (position == 4) startActivity(new Intent(MainActivity.this, JsonRequestActivity.class));
+            //            if (position == 5) startActivity(new Intent(MainActivity.this, FileDownloadActivity.class));
+            //            if (position == 6) startActivity(new Intent(MainActivity.this, FormUploadActivity.class));
+            //            if (position == 7) startActivity(new Intent(MainActivity.this, CacheDemoActivity.class));
+            //            if (position == 9) startActivity(new Intent(MainActivity.this, DownloadActivity.class));
+            //            if (position == 10) startActivity(new Intent(MainActivity.this, UploadActivity.class));
         }
     }
 
