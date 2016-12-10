@@ -23,6 +23,12 @@
         </activity>
         <activity android:name=".ui.activity.WebActivity">
         </activity>
+        <activity android:name=".ui.activity.NewsActivity">
+        </activity>
+        <activity android:name=".ui.activity.MediaActivity">
+        </activity>
+        <activity android:name=".ui.activity.MoreActivity">
+        </activity>
     </application>
 
 </manifest>

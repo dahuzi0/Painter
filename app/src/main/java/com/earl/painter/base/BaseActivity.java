@@ -1,6 +1,7 @@
 package com.earl.painter.base;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +16,17 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.earl.painter.R;
+import com.earl.painter.entity.TabEntity;
+import com.earl.painter.ui.activity.MainActivity;
+import com.earl.painter.ui.activity.MediaActivity;
+import com.earl.painter.ui.activity.MoreActivity;
+import com.earl.painter.ui.activity.NewsActivity;
 import com.earl.painter.utils.SystemBarTintManager;
+import com.flyco.tablayout.CommonTabLayout;
+import com.flyco.tablayout.listener.CustomTabEntity;
+import com.flyco.tablayout.listener.OnTabSelectListener;
+
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 
@@ -26,6 +37,15 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
+    protected boolean isAnim = true;
+    protected String[] mTitles = {"首页", "新闻", "媒体", "更多"};
+    protected int[] mIconUnselectIds = {
+            R.mipmap.tab_home_unselect, R.mipmap.tab_news_unselect,
+            R.mipmap.tab_media_unselect, R.mipmap.tab_more_unselect};
+    protected int[] mIconSelectIds = {
+            R.mipmap.tab_home_select, R.mipmap.tab_news_select,
+            R.mipmap.tab_media_select, R.mipmap.tab_more_select};
+    protected ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
 
     @SuppressWarnings("unchecked")
     public <T extends View> T findView(int id) {
@@ -35,7 +55,64 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        for (int i = 0; i < mTitles.length; i++) {
+            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+        }
         initSystemBarTint();
+    }
+
+    //事件监听
+    protected void listener(CommonTabLayout mTabLayout) {
+        //监听跳转到哪个模块
+        mTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelect(int position) {
+                isAnim = false;
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(BaseActivity.this, MainActivity.class));
+                        finish();
+                        break;
+                    case 1:
+                        startActivity(new Intent(BaseActivity.this, NewsActivity.class));
+                        finish();
+                        break;
+                    case 2:
+                        startActivity(new Intent(BaseActivity.this, MediaActivity.class));
+                        finish();
+                        break;
+                    case 3:
+                        startActivity(new Intent(BaseActivity.this, MoreActivity.class));
+                        finish();
+                        break;
+                }
+                isAnim = true;
+            }
+
+            @Override
+            public void onTabReselect(int position) {
+            }
+        });
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        if (isAnim) {
+            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+        } else {
+            overridePendingTransition(R.anim.none, R.anim.none);
+        }
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+        if (isAnim) {
+            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+        } else {
+            overridePendingTransition(R.anim.none, R.anim.none);
+        }
     }
 
     @Override
@@ -97,6 +174,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
             return;
         }
+
         // 沉浸式状态栏
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             //5.0以上使用原生方法

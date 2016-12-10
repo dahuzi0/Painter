@@ -15,12 +15,9 @@ import android.widget.TextView;
 import com.earl.painter.R;
 import com.earl.painter.base.BaseActivity;
 import com.earl.painter.base.BaseRecyclerAdapter;
-import com.earl.painter.entity.TabEntity;
 import com.flyco.tablayout.CommonTabLayout;
-import com.flyco.tablayout.listener.CustomTabEntity;
 
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -39,15 +36,6 @@ public class MainActivity extends BaseActivity {
     TextView toolbarTitle;
     @BindView(R.id.mTabLayout)
     CommonTabLayout mTabLayout;
-
-    private String[] mTitles = {"首页", "新闻", "媒体", "更多"};
-    private int[] mIconUnselectIds = {
-            R.mipmap.tab_home_unselect, R.mipmap.tab_news_unselect,
-            R.mipmap.tab_media_unselect, R.mipmap.tab_more_unselect};
-    private int[] mIconSelectIds = {
-            R.mipmap.tab_home_select, R.mipmap.tab_news_select,
-            R.mipmap.tab_media_select, R.mipmap.tab_more_select};
-    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     private ArrayList<OkHttpModel> items;
 
     @Override
@@ -55,15 +43,18 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initToolBar(toolbar, false, "");
-        initData();
+        initData();//初始化数据
+        /**
+         * 设置rv属性
+         */
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(new MainAdapter(this));
-        for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
-        }
-        mTabLayout.setTabData(mTabEntities);
+
+        mTabLayout.setTabData(mTabEntities);//给tab设置数据
+        mTabLayout.setCurrentTab(0);//默认第一页
+        listener(mTabLayout);
     }
 
     @OnClick(R.id.fab)
