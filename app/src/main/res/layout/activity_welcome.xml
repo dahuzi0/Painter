@@ -17,10 +17,10 @@
 
 
     <TextView
+        android:id="@+id/tv_signature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
         android:gravity="center"
         android:text="earl"
         android:textColor="@android:color/white"
@@ -29,9 +29,10 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/tv_signature"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="10dp"
         android:src="@mipmap/ic_launcher"
         android:tint="@android:color/white"/>
 </RelativeLayout>

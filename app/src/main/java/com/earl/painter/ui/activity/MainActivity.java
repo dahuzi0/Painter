@@ -18,6 +18,7 @@ import com.earl.painter.base.BaseRecyclerAdapter;
 import com.flyco.tablayout.CommonTabLayout;
 
 import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -59,7 +60,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.fab)
     public void fab(View view) {
-        WebActivity.runActivity(this, "百度", "http://www.baidu.com");
+        WebActivity.runActivity(this, "我的Github,欢迎star", "https://github.com/EARL8888/Painter");
     }
 
     private void initData() {
